@@ -1,13 +1,27 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
+        <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
+        <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
+        <style>
+            .authoring {
+                width: 500px;
+                display: inline-block;
+            }
+        </style>
+    </head>
     <body>
-        <textarea id="md" style="margin: 0px; width: 500px; height: 500px;">
+        <div class="authoring">
+            <textarea id="md" style="margin: 0px; width: 500px; height: 500px;">
 # Markdow here
 
 Hello world!</textarea>
-        <input type="button" value="Preview" onclick="preview()"/>
+        </div>
+        <!-- <input type="button" value="Preview" onclick="preview()"/> -->
 
         <iframe width="500" height="500" id="frame"></iframe>
         <script>
+            const editor = new Editor();
             function preview() {
                 document.getElementById("frame").srcdoc = '';
                 const url = "https://adobeioruntime.net/api/v1/web/acapt/eabbfb4a4d6d13dbdcb388e92769b4fb6302931d-dirty/html";
@@ -18,7 +32,8 @@ Hello world!</textarea>
                         document.getElementById("frame").srcdoc = xhttp.responseText;
                     }
                 };
-                const md = document.getElementById("md").value;
+                //const md = document.getElementById("md").value;
+                const md = editor.codemirror.getValue();
 
                 xhttp.open("POST", url);
                 xhttp.setRequestHeader('X-Debug', 'silly');
@@ -34,11 +49,18 @@ Hello world!</textarea>
         <script src="https://togetherjs.com/togetherjs-min.js"></script>
         <script>
             window.addEventListener('load', function () {
+                editor.render();
+
+                editor.codemirror.on('change', function() {
+                    preview();
+                });
+
                 var TogetherJSConfig_suppressJoinConfirmation = true;
                 TogetherJS.config("disableWebRTC", true);
                 TogetherJS.config("suppressJoinConfirmation", true);
                 TogetherJS(this);
             }, false);
+
         </script>
     </body>
 </html>
