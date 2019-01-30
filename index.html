@@ -48,11 +48,17 @@ Hello world!</textarea>
         </script>
         <script src="https://togetherjs.com/togetherjs-min.js"></script>
         <script>
+            let timeout;
             window.addEventListener('load', function () {
                 editor.render();
 
                 editor.codemirror.on('change', function() {
-                    preview();
+                    if (!timeout) {
+                        timeout = window.setTimeout(function() {
+                            preview();
+                            timeout = null;
+                        }, 500);
+                    }
                 });
 
                 var TogetherJSConfig_suppressJoinConfirmation = true;
