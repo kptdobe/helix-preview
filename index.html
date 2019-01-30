@@ -18,7 +18,7 @@ Hello world!</textarea>
                         document.getElementById("frame").srcdoc = xhttp.responseText;
                     }
                 };
-                const md = document.getElementById("md").innerHTML;
+                const md = document.getElementById("md").value;
 
                 xhttp.open("POST", url);
                 xhttp.setRequestHeader('X-Debug', 'silly');
