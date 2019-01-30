@@ -5,7 +5,7 @@
 
 Hello world!</textarea>
         <input type="button" value="Preview" onclick="preview()"/>
-        
+
         <iframe width="500" height="500" id="frame"></iframe>
         <script>
             function preview() {
@@ -29,6 +29,16 @@ Hello world!</textarea>
                     }
                 }));
             }
+
+        </script>
+        <script src="https://togetherjs.com/togetherjs-min.js"></script>
+        <script>
+            window.addEventListener('load', function () {
+                var TogetherJSConfig_suppressJoinConfirmation = true;
+                TogetherJS.config("disableWebRTC", true);
+                TogetherJS.config("suppressJoinConfirmation", true);
+                TogetherJS(this);
+            }, false);
         </script>
     </body>
 </html>
