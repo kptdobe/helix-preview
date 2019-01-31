@@ -32,14 +32,15 @@ html, body, .container, .box, #md, #frame {
   border-left:solid 1px gray;
 }
 
-.preview-toggle-container {
-  position:absolute;
-  left:282px;
-  top:8px;
-  display:block;
-  z-index:100;
+#hlx-authoring-editor {
+  min-width: 320px;
 }
-#preview-toggle {
+
+#hlx-authoring-preview {
+  display:hidden;
+}
+
+#hlx-authoring-preview-toggle {
   width:32px;
   height:32px;
   border:none;
@@ -48,6 +49,11 @@ html, body, .container, .box, #md, #frame {
 
 .CodeMirror {
   height: 90%;
+}
+
+.CodeMirror-code {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
 }
 
 @media (min-width:600px) {
@@ -60,11 +66,7 @@ html, body, .container, .box, #md, #frame {
     display: block;
   }
 
-  .authoring {
-    min-width: 320px;
-  }
-
-  .preview {
+  #hlx-authoring-preview {
     display:block;
   }
 
