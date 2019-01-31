@@ -10,6 +10,7 @@ definitions:
 
 strains:
   default:
-    code: *defaultRepo
-    content: *defaultRepo
-    static: *defaultRepo
+    code: https://github.com/kptdobe/helix-preview.git#master
+    content: https://github.com/kptdobe/helix-preview.git#master
+    static: https://github.com/kptdobe/helix-preview.git/htdocs#master
+    package: c80364f7e0fd82aa9d7bf53b2134349d3db9290b

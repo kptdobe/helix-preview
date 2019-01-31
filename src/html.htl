@@ -5,16 +5,28 @@
     <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
     <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
     <style>
+        .container {
+            display: flex;
+        }
         .authoring {
             width: 500px;
             display: inline-block;
+            height: 100%;
+        }
+        .preview {
+            height: 100%;
+        }
+
+        .CodeMirror {
+            height: 800px;
         }
     </style>
 </head>
 
 <body>
-    <div class="authoring">
-        <textarea id="md" style="margin: 0px; width: 500px; height: 500px;">
+    <div class="container">
+        <div class="authoring">
+            <textarea id="md" style="margin: 0px; width: 500px; height: 100%">
 # Model 3
 
 ## Tesla
@@ -46,10 +58,11 @@ on either motor, so you never need to worry about getting stuck on the road. If 
 continue to your destination with the second.
 
 [Order Now](https://3.tesla.com/model3/design)</textarea>
+        </div>
+        <div class="preview">
+            <iframe width="1000px" height="100%" id="frame"></iframe>
+        </div>
     </div>
-    <!-- <input type="button" value="Preview" onclick="preview()"/> -->
-
-    <iframe width="800" height="500" id="frame"></iframe>
     <script>
         const editor = new Editor();
 
@@ -92,10 +105,16 @@ continue to your destination with the second.
                 }
             });
 
-            var TogetherJSConfig_suppressJoinConfirmation = true;
+            const TogetherJSConfig_autoStart = true;
+            const TogetherJSConfig_suppressJoinConfirmation = true;
             TogetherJS.config("disableWebRTC", true);
             TogetherJS.config("suppressJoinConfirmation", true);
+            TogetherJS.config("dontShowClicks", true);
+            TogetherJS.config("suppressInvite", true);
+
             TogetherJS(this);
+
+            preview();
         }, false);
     </script>
 </body>
