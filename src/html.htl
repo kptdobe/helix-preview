@@ -67,14 +67,13 @@ continue to your destination with the second.
         const editor = new Editor();
 
         function preview() {
-            document.getElementById("frame").srcdoc = '';
             const url =
                 "https://adobeioruntime.net/api/v1/web/acapt/eabbfb4a4d6d13dbdcb388e92769b4fb6302931d-dirty/html";
 
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("frame").srcdoc = xhttp.responseText;
+                    document.getElementById("frame").contentDocument.documentElement.innerHTML = xhttp.responseText;
                 }
             };
             //const md = document.getElementById("md").value;
