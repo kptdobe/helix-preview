@@ -67,7 +67,7 @@ continue to your destination with the second.
                     } else {
                         const outDiv = frame.contentDocument.body;
                         const newElement = frame.contentDocument.createElement('body');
-                        newElement.innerHTML = newDOM.toLowerCase().substring(newDOM.indexOf('<body>')+6, newDOM.indexOf('</body>'));
+                        newElement.innerHTML = newDOM.substring(newDOM.indexOf('<body>')+6, newDOM.indexOf('</body>'));
                         dd.apply(outDiv, dd.diff(outDiv, newElement));
                     }
                 }
