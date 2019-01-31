@@ -2,30 +2,15 @@
 
 <head>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
+    <link rel="stylesheet" href="/editor.css">
     <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
     <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
-    <style>
-        .container {
-            display: flex;
-        }
-        .authoring {
-            width: 500px;
-            display: inline-block;
-            height: 100%;
-        }
-        .preview {
-            height: 100%;
-        }
-
-        .CodeMirror {
-            height: 800px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="authoring">
+        <div class="authoring box">
+            <div class="preview-toggle-container"><button id="preview-toggle">&nbsp;</button></div>
             <textarea id="md" style="margin: 0px; width: 500px; height: 100%">
 # Model 3
 
@@ -59,8 +44,8 @@ continue to your destination with the second.
 
 [Order Now](https://3.tesla.com/model3/design)</textarea>
         </div>
-        <div class="preview">
-            <iframe width="1000px" height="100%" id="frame"></iframe>
+        <div class="preview box">
+            <iframe id="frame"></iframe>
         </div>
     </div>
     <script>
@@ -117,6 +102,13 @@ continue to your destination with the second.
 
             preview();
         }, false);
+    </script>
+    <script>
+        document.getElementById("preview-toggle").addEventListener("click", (ev) => {
+            console.log("preview toggle clicked");
+            // todo: toggle preview pane
+            ev.cancelBubble = true;
+        });
     </script>
 </body>
 
