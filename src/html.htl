@@ -64,6 +64,13 @@ continue to your destination with the second.
                     const newDOM = xhttp.responseText;
                     if (first) {
                         frame.contentDocument.documentElement.innerHTML  = newDOM;
+                        // hijack the CodeMirror preview button
+                        const oldButton = document.getElementsByClassName("icon-preview")[0];
+                        const newButton = oldButton.cloneNode(true);
+                        newButton.addEventListener("click", (ev) => {
+                            togglePreviewPane();
+                        });
+                        oldButton.parentNode.replaceChild(newButton, oldButton);
                     } else {
                         const outDiv = frame.contentDocument.body;
                         const newElement = frame.contentDocument.createElement('body');

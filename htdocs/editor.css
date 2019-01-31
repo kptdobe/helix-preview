@@ -53,13 +53,14 @@ html, body, .container, .box, #md, #frame {
   display:block;
 }
 
-@media (max-width:619px) {
+@media (max-device-width: 415px) {
+  /* <= iPhone X */
   #hlx-authoring-preview {
     display:none;
     position: absolute;
     top:40px;
     left:0;
-    width: 599px;
+    width: 100%;
     z-index:1000;
   }
 
@@ -68,7 +69,8 @@ html, body, .container, .box, #md, #frame {
   }
 }
 
-@media (min-width:620px) {
+@media (min-device-width: 416px) {
+  /* > iPhone X */
   .container {
     display: flex;
     flex-flow:nowrap;
