@@ -106,13 +106,15 @@ continue to your destination with the second.
             });
 
             const TogetherJSConfig_autoStart = true;
-            const TogetherJSConfig_suppressJoinConfirmation = true;
+
             TogetherJS.config("disableWebRTC", true);
             TogetherJS.config("suppressJoinConfirmation", true);
             TogetherJS.config("dontShowClicks", true);
             TogetherJS.config("suppressInvite", true);
 
             TogetherJS(this);
+
+            TogetherJS.config('findRoom', 'authoring_helix_demo_xyz');
 
             preview();
         }, false);
