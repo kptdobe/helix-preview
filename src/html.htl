@@ -128,7 +128,12 @@ continue to your destination with the second.
 
             TogetherJS(this);
 
-            TogetherJS.config('findRoom', 'authoring_helix_demo_xyz');
+
+            let room = window.location.href;
+            room = room.substring(room.indexOf('://') + 3, room.lastIndexOf('/'));
+            room = room.replace(/\./g, '_');
+            room = room.replace(/\:/g, '_');
+            TogetherJS.config('findRoom', room);
 
             const getCursor = function(id, from, to, width) {
                 const css = 'remote-cursor-' + id;
@@ -167,7 +172,6 @@ continue to your destination with the second.
             }
 
             TogetherJS.hub.on('cursorActivity', function (msg) {
-                console.log('###### cursorActivity msg received!!', msg);
                 editor.codemirror.addWidget(msg.from, getCursor(msg.clientId.replace(/\./g,'_'), msg.from, msg.to, msg.width), false);
             });
 
