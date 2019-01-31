@@ -1,0 +1,103 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
+    <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
+    <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
+    <style>
+        .authoring {
+            width: 500px;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="authoring">
+        <textarea id="md" style="margin: 0px; width: 500px; height: 500px;">
+# Model 3
+
+## Tesla
+
+![Model 3](/content/images/banner1.jpg)
+
+If you haven't test driven the car, you can return it within 3 days of delivery.
+
+* From 0-60 mph: 3.3s
+* Range: 310 mi
+* Dual Motor: AWD
+* [Order Now](https://3.tesla.com/model3/design)
+
+---
+
+# Dual Motor
+
+## All-Wheel Drive
+
+![Model 3](/content/images/banner2.jpg)
+
+* Independent motors digitally control torque to the front and rear wheels: 2
+* Dual motors respond to changing conditions in as little as 10 milliseconds: 10 ms
+* Unparalleled traction and control, in all weather conditions: ![Model 3](/content/images/sun-cloud.png)
+
+Tesla All-Wheel Drive has two independent motors. Unlike traditional all-wheel drive systems, these two motors
+digitally control torque to the front and rear wheels—for far better handling and traction control. Your car can drive
+on either motor, so you never need to worry about getting stuck on the road. If one motor stops working, you can safely
+continue to your destination with the second.
+
+[Order Now](https://3.tesla.com/model3/design)</textarea>
+    </div>
+    <!-- <input type="button" value="Preview" onclick="preview()"/> -->
+
+    <iframe width="800" height="500" id="frame"></iframe>
+    <script>
+        const editor = new Editor();
+
+        function preview() {
+            document.getElementById("frame").srcdoc = '';
+            const url =
+                "https://adobeioruntime.net/api/v1/web/acapt/eabbfb4a4d6d13dbdcb388e92769b4fb6302931d-dirty/html";
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    document.getElementById("frame").srcdoc = xhttp.responseText;
+                }
+            };
+            //const md = document.getElementById("md").value;
+            const md = editor.codemirror.getValue();
+
+            xhttp.open("POST", url);
+            xhttp.setRequestHeader('X-Debug', 'silly');
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.send(JSON.stringify({
+                content: {
+                    body: md
+                }
+            }));
+        }
+    </script>
+    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script>
+        let timeout;
+        window.addEventListener('load', function () {
+            editor.render();
+
+            editor.codemirror.on('change', function () {
+                if (!timeout) {
+                    timeout = window.setTimeout(function () {
+                        preview();
+                        timeout = null;
+                    }, 500);
+                }
+            });
+
+            var TogetherJSConfig_suppressJoinConfirmation = true;
+            TogetherJS.config("disableWebRTC", true);
+            TogetherJS.config("suppressJoinConfirmation", true);
+            TogetherJS(this);
+        }, false);
+    </script>
+</body>
+
+</html>
