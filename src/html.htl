@@ -48,17 +48,28 @@ continue to your destination with the second.
             <iframe id="frame"></iframe>
         </div>
     </div>
+    <script src="/diffDOM.js"></script>
     <script>
         const editor = new Editor();
+        const dd = new diffDOM.DiffDOM();
 
-        function preview() {
+        function preview(first) {
             const url =
                 "https://adobeioruntime.net/api/v1/web/acapt/eabbfb4a4d6d13dbdcb388e92769b4fb6302931d-dirty/html";
 
             const xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.readyState == 4 && this.status == 200) {
-                    document.getElementById("frame").contentDocument.documentElement.innerHTML = xhttp.responseText;
+                    const frame = document.getElementById("frame");
+                    const newDOM = xhttp.responseText;
+                    if (first) {
+                        frame.contentDocument.documentElement.innerHTML  = newDOM;
+                    } else {
+                        const outDiv = frame.contentDocument.body;
+                        const newElement = frame.contentDocument.createElement('body');
+                        newElement.innerHTML = newDOM.substring(newDOM.indexOf('<body>')+6, newDOM.indexOf('</body>'));
+                        dd.apply(outDiv, dd.diff(outDiv, newElement));
+                    }
                 }
             };
             //const md = document.getElementById("md").value;
@@ -100,7 +111,7 @@ continue to your destination with the second.
 
             TogetherJS.config('findRoom', 'authoring_helix_demo_xyz');
 
-            preview();
+            preview(true);
         }, false);
     </script>
     <script>
