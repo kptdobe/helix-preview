@@ -23,10 +23,6 @@ html, body, .container, .box, #md, #frame {
   height:100%;
 }
 
-.preview {
-  display: none;
-}
-
 #frame {
   border:none;
   border-left:solid 1px gray;
@@ -36,27 +32,43 @@ html, body, .container, .box, #md, #frame {
   min-width: 320px;
 }
 
-#hlx-authoring-preview {
-  display:hidden;
-}
-
-#hlx-authoring-preview-toggle {
-  width:32px;
-  height:32px;
-  border:none;
-  background:none;
-}
-
 .CodeMirror {
   height: 90%;
 }
 
 .CodeMirror-code {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 13px;
 }
 
-@media (min-width:600px) {
+#hlx-authoring-toolbar-disabler {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 47px;
+  background: white;
+  z-index: 999;
+  opacity: 0.8;
+  display:block;
+}
+
+@media (max-width:619px) {
+  #hlx-authoring-preview {
+    display:none;
+    position: absolute;
+    top:40px;
+    left:0;
+    width: 599px;
+    z-index:1000;
+  }
+
+  .editor-toolbar > a.icon-fullscreen {
+    visibility:hidden;
+  }
+}
+
+@media (min-width:620px) {
   .container {
     display: flex;
     flex-flow:nowrap;
@@ -67,7 +79,12 @@ html, body, .container, .box, #md, #frame {
   }
 
   #hlx-authoring-preview {
+    position: relative;
     display:block;
+  }
+
+  #hlx-authoring-toolbar-disabler {
+    height:5px;
   }
 
 }
