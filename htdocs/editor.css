@@ -89,3 +89,7 @@ html, body, .container, .box, #md, #frame {
   font-family: openSansRegular,Helvetica;
   padding: 2px;
 }
+
+.remote-cursor .selection {
+  opacity: 0.8;
+}

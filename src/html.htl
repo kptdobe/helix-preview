@@ -102,7 +102,20 @@ continue to your destination with the second.
 
             editor.codemirror.on('cursorActivity', function(doc) {
                 try {
-                    TogetherJS.send({type: "cursorActivity", cursor: doc.getCursor()});
+                    const from = doc.getCursor('from');
+                    const to = doc.getCursor('head');
+
+                    const selection = document.getElementsByClassName('CodeMirror-selected');
+                    let width = '';
+                    if ((from.line !== to.line || from.ch !== to.ch) && selection.length > 0) {
+                        width = selection[selection.length-1].style.width;
+                    }
+                    TogetherJS.send({
+                        type: "cursorActivity", 
+                        from: from,
+                        to: to,
+                        width: width
+                    });
                 } catch(e) {}
             });
 
@@ -117,7 +130,7 @@ continue to your destination with the second.
 
             TogetherJS.config('findRoom', 'authoring_helix_demo_xyz');
 
-            const getCursor = function(id) {
+            const getCursor = function(id, from, to, width) {
                 const css = 'remote-cursor-' + id;
 
                 const existing = document.getElementsByClassName(css);
@@ -139,7 +152,12 @@ continue to your destination with the second.
                 div.className = 'remote-cursor ' + css;
                 const cursor = document.createElement('div');
                 cursor.innerHTML = ' ';
+                cursor.style['background-color'] = color;
                 cursor.style['border-color'] = color;
+                if (width && width !== '') {
+                    cursor.style['width'] = width;
+                    cursor.className = 'selection';
+                }
                 const titleDiv = document.createElement('div');
                 titleDiv.innerHTML = title;
                 titleDiv.style['background-color'] = color;
@@ -150,7 +168,7 @@ continue to your destination with the second.
 
             TogetherJS.hub.on('cursorActivity', function (msg) {
                 console.log('###### cursorActivity msg received!!', msg);
-                editor.codemirror.addWidget(msg.cursor, getCursor(msg.clientId.replace(/\./g,'_')), false);
+                editor.codemirror.addWidget(msg.from, getCursor(msg.clientId.replace(/\./g,'_'), msg.from, msg.to, msg.width), false);
             });
 
             preview(true);  
