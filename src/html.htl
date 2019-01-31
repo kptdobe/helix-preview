@@ -9,8 +9,8 @@
 
 <body>
     <div class="container">
-        <div class="authoring box">
-            <div class="preview-toggle-container"><button id="preview-toggle">&nbsp;</button></div>
+        <div id="hlx-authoring-toolbar-disabler"></div>
+        <div id="hlx-authoring-editor" class="box">
             <textarea id="md" style="margin: 0px; width: 500px; height: 100%">
 # Model 3
 
@@ -44,7 +44,7 @@ continue to your destination with the second.
 
 [Order Now](https://3.tesla.com/model3/design)</textarea>
         </div>
-        <div class="preview box">
+        <div id="hlx-authoring-preview" class="box">
             <iframe id="frame"></iframe>
         </div>
     </div>
@@ -115,11 +115,33 @@ continue to your destination with the second.
         }, false);
     </script>
     <script>
-        document.getElementById("preview-toggle").addEventListener("click", (ev) => {
-            console.log("preview toggle clicked");
-            // todo: toggle preview pane
-            ev.cancelBubble = true;
+
+        function togglePreviewPane() {
+            // toggle preview pane
+            const pp = document.getElementById("hlx-authoring-preview");
+            const ppDisplay = window.getComputedStyle(pp).getPropertyValue("display");
+            pp.style.display = ppDisplay == "none" ? "block" : "none";
+        }
+
+        window.addEventListener("load", function() {
+            // disable editor toolbar if preview is active (and vice-versa)
+            window.setInterval(function() {
+                const ppDisplay = window.getComputedStyle(
+                        document.getElementById("hlx-authoring-preview"))
+                            .getPropertyValue("display");
+                const td = document.getElementById("hlx-authoring-toolbar-disabler");
+                td.style.top = (ppDisplay == "none") ? "-47px" : "0";
+            }, 200);
         });
+
+        /* TODO: add to first time run of preview()
+            const oldButton = document.getElementsByClassName("icon-preview")[0];
+            const newButton = oldButton.cloneNode(true);
+            newButton.addEventListener("click", (ev) => {
+                togglePreviewPane();
+            });
+            oldButton.parentNode.replaceChild(newButton, oldButton);
+        */
     </script>
 </body>
 
