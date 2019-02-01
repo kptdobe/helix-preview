@@ -27,22 +27,9 @@ If you haven't test driven the car, you can return it within 3 days of delivery.
 
 ---
 
-# Dual Motor
+# TODO
 
-## All-Wheel Drive
-
-![Model 3](/content/images/banner2.jpg)
-
-* Independent motors digitally control torque to the front and rear wheels: 2
-* Dual motors respond to changing conditions in as little as 10 milliseconds: 10 ms
-* Unparalleled traction and control, in all weather conditions: ![Model 3](/content/images/sun-cloud.png)
-
-Tesla All-Wheel Drive has two independent motors. Unlike traditional all-wheel drive systems, these two motors
-digitally control torque to the front and rear wheels—for far better handling and traction control. Your car can drive
-on either motor, so you never need to worry about getting stuck on the road. If one motor stops working, you can safely
-continue to your destination with the second.
-
-[Order Now](https://3.tesla.com/model3/design)</textarea>
+</textarea>
         </div>
         <div id="hlx-authoring-preview" class="box">
             <iframe id="frame"></iframe>
@@ -92,7 +79,7 @@ continue to your destination with the second.
             }));
         }
     </script>
-    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script src="/togetherjs.js"></script>
     <script>
         let timeout;
         window.addEventListener('load', function () {
@@ -162,6 +149,11 @@ continue to your destination with the second.
 
                 const div = document.createElement('div');
                 div.className = 'remote-cursor ' + css;
+
+                if (from.line === 0) {
+                    div.className += ' firstline'; 
+                }
+
                 const cursor = document.createElement('div');
                 cursor.innerHTML = ' ';
                 cursor.style['background-color'] = color;
