@@ -210,14 +210,6 @@ continue to your destination with the second.
             }, 200);
         });
 
-        /* TODO: add to first time run of preview()
-            const oldButton = document.getElementsByClassName("icon-preview")[0];
-            const newButton = oldButton.cloneNode(true);
-            newButton.addEventListener("click", (ev) => {
-                togglePreviewPane();
-            });
-            oldButton.parentNode.replaceChild(newButton, oldButton);
-        */
     </script>
 </body>
 

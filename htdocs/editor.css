@@ -36,11 +36,6 @@ html, body, .container, .box, #md, #frame {
   height: 90%;
 }
 
-.CodeMirror-code {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 13px;
-}
-
 #hlx-authoring-toolbar-disabler {
   position: absolute;
   top: 0;
