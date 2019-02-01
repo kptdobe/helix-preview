@@ -92,7 +92,7 @@ continue to your destination with the second.
             }));
         }
     </script>
-    <script src="https://togetherjs.com/togetherjs-min.js"></script>
+    <script src="/togetherjs.js"></script>
     <script>
         let timeout;
         window.addEventListener('load', function () {
