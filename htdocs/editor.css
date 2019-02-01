@@ -87,7 +87,6 @@ html, body, .container, .box, #md, #frame {
 }
 
 .remote-cursor {
-  opacity: 0.8;
   z-index: 9999;
 }
 
@@ -96,17 +95,19 @@ html, body, .container, .box, #md, #frame {
   border-left: 1px solid black;
   top: -18px;
   position: absolute;
+  opacity: 0.4;
 }
 
 .remote-cursor div:nth-of-type(1) {
-  top: -40px;
-  height: 18px;
+  top: -34px;
+  height: 12px;
   color: white;
   position: absolute;
   font-size: 10px;
   width: max-content;
   font-family: openSansRegular,Helvetica;
-  padding: 2px;
+  padding: 2px 4px;
+  opacity: 0.8;
 }
 
 .remote-cursor.firstline div:nth-of-type(1) {
