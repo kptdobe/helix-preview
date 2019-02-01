@@ -13,4 +13,4 @@ strains:
     code: https://github.com/kptdobe/helix-preview.git#master
     content: https://github.com/kptdobe/helix-preview.git#master
     static: https://github.com/kptdobe/helix-preview.git/htdocs#master
-    package: 0a04a3f0018f13171cb9cfa6bbe3be02d3bb2937
+    package: 7595ec1e3891a8fad6ef07db7a0325c48f3e9c9c
