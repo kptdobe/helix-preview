@@ -162,6 +162,11 @@ continue to your destination with the second.
 
                 const div = document.createElement('div');
                 div.className = 'remote-cursor ' + css;
+
+                if (from.line === 0) {
+                    div.className += ' firstline'; 
+                }
+
                 const cursor = document.createElement('div');
                 cursor.innerHTML = ' ';
                 cursor.style['background-color'] = color;

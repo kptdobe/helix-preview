@@ -93,7 +93,7 @@ html, body, .container, .box, #md, #frame {
 
 .remote-cursor {
   opacity: 0.8;
-  z-index: 3;
+  z-index: 9999;
 }
 
 .remote-cursor div:nth-of-type(2) {
@@ -114,7 +114,12 @@ html, body, .container, .box, #md, #frame {
   padding: 2px;
 }
 
+.remote-cursor.firstline div:nth-of-type(1) {
+  top: 0;
+}
+
+
 /* Hide togetherjs mouse cursor*/
 .togetherjs-cursor {
-  display: none;
+  display: none !important;
 }
