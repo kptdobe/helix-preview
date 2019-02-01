@@ -14,3 +14,8 @@ strains:
     content: https://github.com/kptdobe/helix-preview.git#master
     static: https://github.com/kptdobe/helix-preview.git/htdocs#master
     package: 40772f69db018ba4a72ca869f7023ffd7a169133
+  dev:
+    url: http://localhost:3000/
+    code: *defaultRepo
+    content: *defaultRepo
+    static: *defaultRepo
