@@ -13,7 +13,8 @@ strains:
     code: https://github.com/kptdobe/helix-preview.git#master
     content: https://github.com/kptdobe/helix-preview.git#master
     static: https://github.com/kptdobe/helix-preview.git/htdocs#master
-    package: 40772f69db018ba4a72ca869f7023ffd7a169133
+    package: acapt/49c0caf112fdfdd8b38f6bf6b0c71d92dcf859ce
+    url: https://collab.helix-demo.xyz
   - name: dev
     url: http://localhost:3000/
     code: *defaultRepo
